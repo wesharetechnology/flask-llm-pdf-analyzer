@@ -1,0 +1,21 @@
+
+<html>
+   <head>
+      <title>success</title>
+      <link rel="shortcut icon" href="data:" />
+      <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='css/style.css')}}">  
+   </head>
+   <body>
+      <div class="result-wrapper">
+         <div class="upload-successful-title">File uploaded successfully
+            
+            <p>Analyzed result</p>
+         </div>
+         <div class="results">
+            <p>File Name: {{name}}</p>
+            <textarea name="" id="myTextarea" cols="100" rows="30">{{result}}</textarea>
+         </div>
+         
+      </div>
+   </body>
+</html>
