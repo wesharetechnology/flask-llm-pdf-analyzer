@@ -5,18 +5,9 @@ def feed_to_model(sentences, model, tokenizer):
                     ]
                 }
     # put the pdf text in a string
-    # FIXME: delete i later
     i = 0
     for sentence in sentences:
         # feed each sentence to the model
-        # prompt = f"""Please extract the names of chemical used in the text deliminated by triple backticks\
-        # ```{sentence}```. Summerize each chemical in one JSON object. Do not output anything if there is no chemical name.\
-        # The information of the chemical can be obtained from Sigma-Aldrich\
-        # here is the json structure:\
-        #     \"chemical_name\": \"..\",
-        #     \"chemical_property\": \"..\",
-        #     \"hazard\": \"..\"
-        # """
         prompt = """Extract "chemical_name" (keyword,content) from the text above, 
                     also content such as "chemical_property", "chemical_hazard" and output in json format.
                     Do not output anything if there is no chemical name. Output JSON object only."""

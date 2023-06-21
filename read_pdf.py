@@ -1,5 +1,5 @@
-import PyPDF2
 import re
+import PyPDF2
 
 def extract_sentences(file_path):
     # Open the PDF file in binary mode
@@ -25,5 +25,3 @@ def extract_sentences(file_path):
     pdf_file.close()
     return all_sentences
     # Print all the extracted sentences
-    # for sentence in all_sentences:
-    #     print(sentence.strip())
