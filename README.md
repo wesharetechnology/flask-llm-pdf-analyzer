@@ -1,5 +1,4 @@
 # Flask-LLM App
-
 ## Table of Contents
 - [Introduction](#introduction)
 - [Installation](#installation)
@@ -12,17 +11,16 @@ This is a flask app that uses the LLM model to extract chemicals from a PDF File
 2. The project runs on conda environment for running large language models. To install the same conda environment, run `conda env create -f llm_env.yml` and also `pip install -r pip_requirement.txt` (actually pip install or conda install?)
 ### Build a flask app
 Tutorial Source: [How to build a web application using Flask and deploy it to the cloud](https://www.freecodecamp.org/news/how-to-build-a-web-application-using-flask-and-deploy-it-to-the-cloud-3551c985e492/)
-1. make sure flask is installed: `pip install flask`<!-- ; then create by `virtualenv "venv"` -->
-2. On windows, allow running the script `Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser`
-3. On windows, `Scripts\activate`
-4. `pip install flask`
-5. Enter directory `cd flask_app`
-### run the llm model (ChatGLM-6B)
+1. On windows, allow running the script `Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser`
+2. On windows, `Scripts\activate`
+3. Make sure flask is installed: `pip install flask`
+4. Enter directory `cd flask_app`
+### Run the llm model (ChatGLM-6B)
 1. Make sure the correct python version/interpreter is used when typing `python` in terminal
-2. Currently, the model is run locally. The path is set at `main.py` in `LLM_MODEL_PATH`. Change the path to the correct path of the model. or change to `THUDM\chatglm-6b`
+2. Currently, the model is run locally. The path is set at `main.py` in `LLM_MODEL_PATH`. Change the path to the correct path of the model. or change to `THUDM\chatglm-6b` to use the online model on huggingface
 ## Usage
-1. go to the directory `cd flask-llm-pdf-analyzer`
-2. run `python main.py`
+1. Go to the directory `cd flask-llm-pdf-analyzer`
+2. Run `python main.py`
 ## Problem of the current application
 1. [Scalability] Locks and the multithread handler have not been implemented
 2. [Error Rate] The llm gives unstable output

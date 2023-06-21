@@ -20,10 +20,7 @@ def feed_to_model(sentences, model, tokenizer):
         prompt = """Extract "chemical_name" (keyword,content) from the text above, 
                     also content such as "chemical_property", "chemical_hazard" and output in json format.
                     Do not output anything if there is no chemical name. Output JSON object only."""
-
         i += 1
-        if i > 10:
-            break
         input ='{}\n\n{}'.format(sentence, prompt)
         
         response, history =  model.chat(tokenizer, input, history = [])
