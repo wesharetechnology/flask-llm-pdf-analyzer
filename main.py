@@ -7,10 +7,11 @@ import json
 import read_pdf
 import run_llm
 
+LLM_MODEL_PATH = "E:\Model\chatglm-6b"
 
 app = Flask(__name__)  
-tokenizer = AutoTokenizer.from_pretrained("E:\Model\chatglm-6b", trust_remote_code=True, revision="")
-model = AutoModel.from_pretrained("E:\Model\chatglm-6b", trust_remote_code=True, revision="").half().cuda()
+tokenizer = AutoTokenizer.from_pretrained(LLM_MODEL_PATH, trust_remote_code=True, revision="")
+model = AutoModel.from_pretrained(LLM_MODEL_PATH, trust_remote_code=True, revision="").half().cuda()
 model = model.eval()
 
 @app.route('/')  

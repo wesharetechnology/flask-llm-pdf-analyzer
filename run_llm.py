@@ -1,7 +1,3 @@
-# from transformers import AutoTokenizer, AutoModel
-# tokenizer = AutoTokenizer.from_pretrained("THUDM/chatglm-6b", trust_remote_code=True, revision="")
-# model = AutoModel.from_pretrained("THUDM/chatglm-6b", trust_remote_code=True, revision="").half().cuda()
-# model = model.eval()
 import json
 def feed_to_model(sentences, model, tokenizer):
     responses = {
