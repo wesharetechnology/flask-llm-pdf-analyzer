@@ -4,6 +4,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Problem of the current application](#problem-of-the-current-application)
+- [Liscense](#liscence)
 - [Contributors](#contributors)
 ## Introduction
 This is a flask app that uses the LLM model to extract chemicals from a PDF File input.
@@ -33,5 +34,7 @@ Tutorial Source: [How to build a web application using Flask and deploy it to th
     - The model can output mixed Chinese and English; This app cannot output JSON
 3. [Response Time] Currently, each sentence is processed one by one, which is not efficient
     - There is a tradeoff: short sentences and short prompts lead to more accurate result, the model is called more times, hence slower response time; long sentences and long prompts lead to less accurate result, the model is called less times, and the response time is shorter
+## Licence
+
 ## Contributors 
 Contributor: [Wang Yumeng](https://github.com/Alexwwwwww)
