@@ -1,7 +1,15 @@
+"""
+This read the PDF file obtained from the POST method and split it into sentences
+"""
 import re
 import PyPDF2
 
 def extract_sentences(file_path):
+    """
+    input: the PDF in current directory
+    output: a list of sentences
+    """
+
     # Open the PDF file in binary mode
     pdf_file = open(file_path, 'rb')
 
@@ -24,4 +32,3 @@ def extract_sentences(file_path):
     # Close the PDF file
     pdf_file.close()
     return all_sentences
-    # Print all the extracted sentences

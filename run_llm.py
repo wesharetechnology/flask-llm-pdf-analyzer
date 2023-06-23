@@ -1,5 +1,15 @@
+"""
+This file is for feeding the extracted sentences from PDF and feed into llm for answers
+"""
 import json
+
+
 def feed_to_model(sentences, model, tokenizer):
+    """
+    input: [List] sentences,
+    model: llm transformer,
+    tokenizer
+    """
     responses = {"chemical_info": []}
     chemical_name = set()
     # put the pdf text in a string
@@ -12,8 +22,8 @@ def feed_to_model(sentences, model, tokenizer):
                     Skip the citation and reference.
                     Output JSON object only."""
         i += 1
-        input = "{}\n\n{}".format(sentence, prompt)
-        response, history = model.chat(tokenizer, input, history=[])
+        llm_input = "{}\n\n{}".format(sentence, prompt)
+        response, history = model.chat(tokenizer, llm_input, history=[])
         # bypass the invalid output
         if not response.isascii():
             continue
@@ -34,8 +44,8 @@ def feed_to_model(sentences, model, tokenizer):
             continue
         if i > 10:
             break
-        # print(type(responses), responses)
     return responses
+
 
 # def feed_to_model(setences, model, tokenizer):
 #     responses = {
