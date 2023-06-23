@@ -10,7 +10,8 @@
 This is a flask app that uses the LLM model to extract chemicals from a PDF File input.
 ## Installation
 1. Clone the repository: `git clone https://github.com/wesharetechnology/flask-llm-pdf-analyzer.git`
-2. The project runs on conda environment for running large language models. To install the same conda environment, run `conda env create -f llm_env.yml` and also `pip install -r pip_requirement.txt` (actually pip install or conda install?)
+2. The project runs on conda environment for running large language models. To install the same conda environment, run `conda env create -f llm_env.yml`
+3. Activate the conda environment: `conda activate llm_env`
 ### Build a flask app
 Tutorial Source: [How to build a web application using Flask and deploy it to the cloud](https://www.freecodecamp.org/news/how-to-build-a-web-application-using-flask-and-deploy-it-to-the-cloud-3551c985e492/)
 1. On windows, allow running the script `Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser`
@@ -35,6 +36,15 @@ Tutorial Source: [How to build a web application using Flask and deploy it to th
 3. [Response Time] Currently, each sentence is processed one by one, which is not efficient
     - There is a tradeoff: short sentences and short prompts lead to more accurate result, the model is called more times, hence slower response time; long sentences and long prompts lead to less accurate result, the model is called less times, and the response time is shorter
 ## Licence
-
+ChatGLM-6B license: [here](https://github.com/THUDM/ChatGLM-6B/blob/main/MODEL_LICENSE)\
+Cite the article
+```
+@article{zeng2022glm,
+  title={Glm-130b: An open bilingual pre-trained model},
+  author={Zeng, Aohan and Liu, Xiao and Du, Zhengxiao and Wang, Zihan and Lai, Hanyu and Ding, Ming and Yang, Zhuoyi and Xu, Yifan and Zheng, Wendi and Xia, Xiao and others},
+  journal={arXiv preprint arXiv:2210.02414},
+  year={2022}
+}
+```
 ## Contributors 
 Contributor: [Wang Yumeng](https://github.com/Alexwwwwww)

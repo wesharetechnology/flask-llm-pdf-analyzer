@@ -30,6 +30,9 @@ jobs:
         pip install gunicorn
         pip install pylint
         pip install pylint-exit
+        pip install flask
+        pip install transformers
+        pip install werkzeug
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py') || pylint-exit $?
