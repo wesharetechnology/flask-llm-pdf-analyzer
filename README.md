@@ -3,6 +3,7 @@
 - [Introduction](#introduction)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Problem of the current application](#problem-of-the-current-application)
 - [Contributors](#contributors)
 ## Introduction
 This is a flask app that uses the LLM model to extract chemicals from a PDF File input.
@@ -21,6 +22,8 @@ Tutorial Source: [How to build a web application using Flask and deploy it to th
 ## Usage
 1. Go to the directory `cd flask-llm-pdf-analyzer`
 2. Run `python main.py`
+### Demo of Usage
+![](graphics/demo.gif)
 ## Problem of the current application
 1. [Scalability] Locks and the multithread handler have not been implemented
 2. [Error Rate] The llm gives unstable output
