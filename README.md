@@ -14,7 +14,7 @@ Tutorial Source: [How to build a web application using Flask and deploy it to th
 1. On windows, allow running the script `Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser`
 2. On windows, `Scripts\activate`
 3. Make sure flask is installed: `pip install flask`
-4. Enter directory `cd flask_app`
+
 ### Run the llm model (ChatGLM-6B)
 1. Make sure the correct python version/interpreter is used when typing `python` in terminal
 2. Currently, the model is run locally. The path is set at `main.py` in `LLM_MODEL_PATH`. Change the path to the correct path of the model. or change to `THUDM\chatglm-6b` to use the online model on huggingface
