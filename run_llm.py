@@ -16,14 +16,16 @@ def feed_to_model(sentences, model, tokenizer):
     i = 0
     for sentence in sentences:
         # feed each sentence to the model
-        prompt = """Extract "chemical_name" (keyword,content) from the text above, 
+        prompt = """Extract "chemical_name" (keyword,content) from the text above,
                     also content such as "chemical_property", "chemical_hazard" and output in json format.
                     Do not output anything if there is no chemical name.
                     Skip the citation and reference.
                     Output JSON object only."""
         i += 1
-        llm_input = "{}\n\n{}".format(sentence, prompt)
+        llm_input = f"{sentence}\n\n{prompt}"
         response, history = model.chat(tokenizer, llm_input, history=[])
+        # resolve unused variable
+        history = history[0]
         # bypass the invalid output
         if not response.isascii():
             continue

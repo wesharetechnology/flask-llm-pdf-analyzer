@@ -11,7 +11,8 @@ def extract_sentences(file_path):
     """
 
     # Open the PDF file in binary mode
-    pdf_file = open(file_path, 'rb')
+    with open(file_path, 'rb') as file:
+        pdf_file = file.read()
 
     # Create a PDF reader object
     pdf_reader = PyPDF2.PdfFileReader(pdf_file)

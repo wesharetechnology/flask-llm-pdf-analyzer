@@ -33,6 +33,7 @@ jobs:
         pip install flask
         pip install transformers
         pip install werkzeug
+        pip install PyPDF2
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py') || pylint-exit $?
