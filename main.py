@@ -33,9 +33,9 @@ def success():
         # return render the result into string
         result_str = json.dumps(result, indent=4, ensure_ascii=False)
         # print(result_str)
-        return render_template("acknowledgement.html", name = f.filename, result = result_str)
-    else:
-        return None
+        return render_template("acknowledgement.html", name = my_file.filename, result = result_str)
+
+    return None
 
 if __name__ == '__main__':
     app.wsgi_app = ProxyFix(app.wsgi_app)
