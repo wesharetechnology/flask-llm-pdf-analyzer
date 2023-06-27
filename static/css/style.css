@@ -48,6 +48,16 @@
   border: 3px dashed #18a7ff82;
   cursor: pointer;
 }
+.uploadlabel span{
+  font-size: 70;
+  color: #9ac0eb;
+}
+.uploadlabel p{
+  font-size: 16px;
+  font-weight: 400;
+  color: #9ac0eb;
+  margin: 0;
+}
 .analyzelabel{
   width: 100%;
   min-height: 30px;
@@ -101,70 +111,55 @@
   text-align: center;
   margin-bottom: 20px;
 }
-/* 
-.card {
-  border-radius: 10px;
-  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
-  width: 600px;
-  height: 260px;
-  background-color: #ffffff;
-  padding: 10px 30px 40px;
+.uploaded{
+  margin: 30px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #a5a5a5
 }
-
-.card h3 {
-  font-size: 22px;
-  font-weight: 600;
-  
-}
-
-.drop_box {
+.showfilebox{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
   margin: 10px 0;
-  padding: 30px;
+  box-shadow: #0000000d 0px 0px 0px 1px, #d1d5db3d 0px 0px 0px 1px inset;
+}
+.showfilebox .left{
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  border: 3px dotted #a3a3a3;
-  border-radius: 5px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
-
-.drop_box h4 {
-  font-size: 16px;
+.filetype{
+  background: #0a3e5f;
+  color: #fff;
+  padding: 5px 15px;
+  font-size: 14px;
+  text-transform: capitalize;
+  font-weight: 700;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+.left h3{
+  font-size: 14px;
   font-weight: 400;
-  color: #2e2e2e;
+  color: #292f42;
+  margin: 0;
 }
-
-.drop_box p {
-  margin-top: 10px;
-  margin-bottom: 20px;
-  font-size: 12px;
-  color: #a3a3a3;
+.right span{
+  background: #292f42;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 20px;
+  display: inline-block;
+  text-align: center;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 50%;
 }
-
-.btn {
-  text-decoration: none;
-  background-color: #005af0;
-  color: #ffffff;
-  padding: 10px 20px;
-  border: none;
-  outline: none;
-  transition: 0.3s;
-}
-
-.btn:hover{
-  text-decoration: none;
-  background-color: #ffffff;
-  color: #005af0;
-  padding: 10px 20px;
-  border: none;
-  outline: 1px solid #010101;
-}
-.form input {
-  margin: 10px 0;
-  width: 100%;
-  background-color: #e2e2e2;
-  border: none;
-  outline: none;
-  padding: 12px 20px;
-  border-radius: 4px;
-}  */

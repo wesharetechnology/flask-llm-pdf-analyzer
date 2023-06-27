@@ -9,27 +9,24 @@ def extract_sentences(file_path):
     input: the PDF in current directory
     output: a list of sentences
     """
-
-    # Open the PDF file in binary mode
-    with open(file_path, 'rb') as file:
-        pdf_file = file.read()
-
-    # Create a PDF reader object
-    pdf_reader = PyPDF2.PdfFileReader(pdf_file)
-
-    # Loop over each page in the file
     all_sentences = []
-    for page_num in range(pdf_reader.getNumPages()):
-        # Extract the text from the page
-        page = pdf_reader.getPage(page_num)
-        text = page.extractText()
+    # Open the PDF file in binary mode
+    with open(file_path, 'rb') as pdf_file:
 
-        # Split the text into sentences using regex
-        sentences = re.split('[.!?]', text)
+        # Create a PDF reader object
+        pdf_reader = PyPDF2.PdfFileReader(pdf_file)
 
-        # Add the sentences to the list of all sentences
-        all_sentences.extend(sentences)
+        # Loop over each page in the file
+        for page_num in range(pdf_reader.getNumPages()):
+            # Extract the text from the page
+            page = pdf_reader.getPage(page_num)
+            text = page.extractText()
+
+            # Split the text into sentences using regex
+            sentences = re.split('[.!?]', text)
+
+            # Add the sentences to the list of all sentences
+            all_sentences.extend(sentences)
 
     # Close the PDF file
-    pdf_file.close()
     return all_sentences

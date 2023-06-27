@@ -1,31 +1,49 @@
 <html>  
-<head>  
-    <title>upload file</title>
-    <link rel="shortcut icon" href="data:" />  
-    <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='css/style.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>  
-<body>
-  <div class="wrapper">
-    <div class="box">  
-      <div class="input-bx">
-        <h2 class="upload-area-title">Upload PDF File</h2>
-        <!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script> -->
-            <form action = "/success" method = "post" enctype="multipart/form-data">  
-              <input type="file" id="upload" name="file" accept=".pdf" > 
-              <label for="upload" class="uploadlabel">
-                <span> <i class="fa fa-upload" aria-hidden="true" style="font-size:24px"></i></span>
-                <p>Click To Upload</p>
-              </label>
-              <input type="submit" id="submit" value="Analyze" hidden>  
-              <br></br>
-              <label for="submit" class="analyzelabel">
-                <i class="fa fa-file-text"></i>
-                <p> Click to See the Analyzed Result</p>
-              </label>
-            </form>
+  <head>  
+      <title>upload file</title>
+      <link rel="shortcut icon" href="data:" />  
+      <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='css/style.css')}}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>  
+
+  <body>
+    <div class="wrapper">
+      <div class="box">
+        
+        <div class="input-bx">
+          <h2 class="upload-area-title">Upload PDF File</h2>
+          <!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script> -->
+              <form action = "/success" method = "post" enctype="multipart/form-data">  
+                <input type="file" id="upload" name="file" accept=".pdf" hidden> 
+                <label for="upload" class="uploadlabel">
+                  <span> <i class="fa fa-upload" aria-hidden="true"></i></span>
+                  <p>Click To Upload</p>
+                </label>
+                <input type="submit" id="submit" value="Analyze" hidden>  
+                <br></br>
+              </form>
+        </div>
+
+        <div id="filewrapper">
+          <h3 class="uploaded">Uploaded Document</h3>
+          <!-- <div class="showfilebox">
+            <div class="left">
+              <span class="filetype">Pdf</span>
+              <h3>my.pdf</h3>
+            </div>
+            
+            <div class="right">
+              <span>&#215</span>
+            </div>
+          </div> -->
+        </div>
+      <div class="submit-bx">
+        <label for="submit" class="analyzelabel">
+          <i class="fa fa-file-text"></i>
+          <p> Click to See the Analyzed Result</p>
+        </label>
       </div>
     </div>
-  </div> 
-</body>  
+  <script src="{{ url_for('static', filename='js/script.js')}}"></script>" 
+  </body>  
 </html>

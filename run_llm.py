@@ -10,7 +10,8 @@ def feed_to_model(sentences, model, tokenizer):
     model: llm transformer,
     tokenizer
     """
-    responses = {"chemical_info": []}
+    #responses = {"chemical_info": []}
+    responses = []
     chemical_name = set()
     # put the pdf text in a string
     i = 0
@@ -39,7 +40,7 @@ def feed_to_model(sentences, model, tokenizer):
         try:
             if data["chemical_name"] not in chemical_name:
                 chemical_name.add(data["chemical_name"])
-                responses["chemical_info"].append(data)
+                responses.append(data)
             else:
                 continue
         except KeyError:

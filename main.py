@@ -32,7 +32,6 @@ def success():
         result = run_llm.feed_to_model(sentences, model, tokenizer)
         # return render the result into string
         result_str = json.dumps(result, indent=4, ensure_ascii=False)
-        # print(result_str)
         return render_template("acknowledgement.html", name = my_file.filename, result = result_str)
 
     return None
