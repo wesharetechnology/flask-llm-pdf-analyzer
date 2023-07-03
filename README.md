@@ -10,13 +10,18 @@
 This is a flask app that uses the LLM model to extract chemicals from a PDF File input.
 ## Installation
 1. Clone the repository: `git clone https://github.com/wesharetechnology/flask-llm-pdf-analyzer.git`
+
 2. The project runs on conda environment for running large language models. To install the same conda environment, run `conda env create -f llm_env.yml`
+
 3. Activate the conda environment: `conda activate llm_env`
 ### Build a flask app
 Tutorial Source: [How to build a web application using Flask and deploy it to the cloud](https://www.freecodecamp.org/news/how-to-build-a-web-application-using-flask-and-deploy-it-to-the-cloud-3551c985e492/)
-1. On windows, allow running the script `Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser`
-2. On windows, `Scripts\activate`
-3. Make sure flask is installed: `pip install flask`
+
+1. Activate the environment by `Scripts\activate` 
+
+  - If you are using PowerShell, you might need to set the execution policy to unrestricted. Run the following command in PowerShell as Administrator: `Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser`
+
+2. Make sure flask is installed: `pip install flask`
 
 ### Run the llm model (ChatGLM-6B)
 1. Make sure the correct python version/interpreter is used when typing `python` in terminal

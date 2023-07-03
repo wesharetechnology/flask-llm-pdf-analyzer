@@ -14,10 +14,10 @@ def extract_sentences(file_path):
     with open(file_path, 'rb') as pdf_file:
 
         # Create a PDF reader object
-        pdf_reader = PyPDF2.PdfFileReader(pdf_file)
+        pdf_reader = PyPDF2.PdfFileReader(pdf_file, strict=False)
 
         # Loop over each page in the file
-        for page_num in range(pdf_reader.getNumPages()):
+        for page_num in range(0, pdf_reader.getNumPages()-2):
             # Extract the text from the page
             page = pdf_reader.getPage(page_num)
             text = page.extractText()

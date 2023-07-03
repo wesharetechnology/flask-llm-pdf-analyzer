@@ -7,9 +7,10 @@ from transformers import AutoTokenizer, AutoModel
 from werkzeug.middleware.proxy_fix import ProxyFix
 import read_pdf
 import run_llm
-
-LLM_MODEL_PATH = r"E:\Model\chatglm-6b"
-
+# using ChatGLM-6B:
+# LLM_MODEL_PATH = r"E:\Model\chatglm-6b"
+# using ChatGLM2-6B:
+LLM_MODEL_PATH = r"E:\Model\ChatGLM2-6B"
 app = Flask(__name__)
 tokenizer = AutoTokenizer.from_pretrained(LLM_MODEL_PATH, trust_remote_code=True, revision="")
 model = AutoModel.from_pretrained(LLM_MODEL_PATH, trust_remote_code=True, revision="").half().cuda()

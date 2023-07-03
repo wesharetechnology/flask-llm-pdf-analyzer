@@ -14,7 +14,6 @@ def feed_to_model(sentences, model, tokenizer):
     responses = []
     chemical_name = set()
     # put the pdf text in a string
-    i = 0
     for sentence in sentences:
         # feed each sentence to the model
         prompt = """Extract "chemical_name" (keyword,content) from the text above,
@@ -22,7 +21,7 @@ def feed_to_model(sentences, model, tokenizer):
                     Do not output anything if there is no chemical name.
                     Skip the citation and reference.
                     Output JSON object only."""
-        i += 1
+
         llm_input = f"{sentence}\n\n{prompt}"
         response, history = model.chat(tokenizer, llm_input, history=[])
         # resolve unused variable
@@ -45,6 +44,5 @@ def feed_to_model(sentences, model, tokenizer):
                 continue
         except KeyError:
             continue
-        if i > 10:
-            break
+
     return responses
