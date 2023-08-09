@@ -21,7 +21,7 @@ Tutorial Source: [How to build a web application using Flask and deploy it to th
 
   - If you are using PowerShell, you might need to set the execution policy to unrestricted. Run the following command in PowerShell as Administrator: `Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser`
 
-2. Make sure flask is installed: `pip install flask`
+2. Make sure flask is installed: `pip install -r pip_requirements.txt`
 
 ### Run the llm model (ChatGLM-6B)
 1. Make sure the correct python version/interpreter is used when typing `python` in terminal
