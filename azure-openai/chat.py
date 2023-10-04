@@ -1,3 +1,4 @@
+"""Module providing Function Enabling multi-round conversations with azure OPENAI."""
 import openai
 import os
 from dotenv import load_dotenv
