@@ -1,6 +1,7 @@
 """Module providing Function Enabling multi-round conversations with azure OPENAI."""
-import openai
+
 import os
+import openai
 from dotenv import load_dotenv
 
 # 从.env文件中读取API设置和密钥
