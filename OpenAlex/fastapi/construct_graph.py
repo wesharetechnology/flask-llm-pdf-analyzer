@@ -32,12 +32,11 @@ import json
 def construct_graph(data):
 
     # Connect to the Neo4j database
-    uri = "neo4j+s://e9358041.databases.neo4j.io"
-    username = "neo4j"  # Update with your Neo4j username
     load_dotenv()
+    uri = os.getenv("NEO4J_URI")
+    username = os.getenv("NEO4J_USERNAME")  # Update with your Neo4j username
     # Update with your Neo4j password
     password = os.getenv("NEO4J_PASSWORD")
-    print(password)
     db_driver = GraphDatabase.driver(uri, auth=(username, password))
 
     # Create a Neo4j session

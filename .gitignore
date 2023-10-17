@@ -171,3 +171,6 @@ chromedriver.exe
 data/uCap
 db
 vectordb
+# test file
+./test.ipynb
+# log folder
