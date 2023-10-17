@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 import requests
+from construct_graph import construct_graph
 app = FastAPI()
 
 
@@ -22,14 +23,33 @@ def search_author(author_name: str):
 
 
 @app.get("/id/{author_id}")
-def search_id(author_id: str):
+def search_id(author_id: str, n: int = 2):
     """search for the author name in OpenAlex, such as url = "https://api.openalex.org/works?filter=author.id:A5043842990"""
+    if n == 0:
+        return
+    else:
+        url = "https://api.openalex.org/works?filter=author.id:" + author_id
+        # find connections by concept
+        # find connections by work
+        # find connections by author
+        # find connections by institution
+        # construct a graph that shows the connections between the author and their co-authors
+        relations = []
+        results = requests.get(url).json()["results"]
+        for result in results:
 
-    url = "https://api.openalex.org/works?filter=author.id:" + author_id
-    # find connections by concept
-    # find connections by work
-    # find connections by author
-    # find connections by institution
-    results = requests.get(url).json()["results"]
-    for result in results:
-        print(result["authorships"])
+            publication = {
+                "paper_id": result["id"],
+                "doi": result["doi"],
+                "title": result["title"],
+                "coauthors": []
+            }
+            for authorship in result["authorships"]:
+                publication["coauthors"].append(authorship["author"])
+            relations.append(publication)
+
+        construct_graph(relations)
+        for relation in relations:
+            for coauthor in relation["coauthors"]:
+                search_id(coauthor["id"], n-1)
+    # return relations

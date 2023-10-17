@@ -48,23 +48,27 @@ def construct_graph(data):
             query = """
             MERGE (p:Publication {titles: $titles, paper_id: $paper_id})
             """
-            session.run(query,
-                        titles=publication['title'],
-                        paper_id=publication['paper_id'])
+            try:
+                session.run(query,
+                            titles=publication['title'],
+                            paper_id=publication['paper_id'])
+            except:
+                pass
 
             # Iterate over the coauthors of the publication
-            for coauthor in publication['coauthors']:
-                # Create the coauthor node
-                query = """
-                MERGE (a:Author {id: $id, display_name: $display_name})
-                """
-                session.run(
-                    query, id=coauthor['id'], display_name=coauthor['display_name'])
+            if publication['coauthors'] is not None:
+                for coauthor in publication['coauthors']:
+                    # Create the coauthor node
+                    query = """
+                    MERGE (a:Author {id: $id, display_name: $display_name})
+                    """
+                    session.run(
+                        query, id=coauthor['id'], display_name=coauthor['display_name'])
 
-                # Create the relationship between the coauthor and the publication
-                query = """
-                MATCH (a:Author {id: $id}), (p:Publication {paper_id: $paper_id})
-                MERGE (a)-[:HAS_PUBLICATION]->(p)
-                """
-                session.run(query, id=coauthor['id'],
-                            paper_id=publication['paper_id'])
+                    # Create the relationship between the coauthor and the publication
+                    query = """
+                    MATCH (a:Author {id: $id}), (p:Publication {paper_id: $paper_id})
+                    MERGE (a)-[:HAS_PUBLICATION]->(p)
+                    """
+                    session.run(query, id=coauthor['id'],
+                                paper_id=publication['paper_id'])
