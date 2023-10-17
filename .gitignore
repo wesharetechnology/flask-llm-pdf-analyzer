@@ -166,3 +166,8 @@ cython_debug/
 # web driver
 driver/
 chromedriver.exe
+
+# data folder
+data/uCap
+db
+vectordb
