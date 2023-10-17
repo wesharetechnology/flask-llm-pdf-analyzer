@@ -1,0 +1,13 @@
+openpyxl
+uvicorn
+pylint
+pylint-exit
+flask
+fastapi
+transformers
+PyPDF2
+openapi
+python-dotenv
+chromadb
+langchain
+uvicorn
