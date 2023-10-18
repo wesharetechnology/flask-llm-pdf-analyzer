@@ -27,6 +27,10 @@ from neo4j import GraphDatabase
 import os
 from dotenv import load_dotenv
 import json
+import logging
+# Configure the logger
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 
 def construct_graph(data):
@@ -52,8 +56,11 @@ def construct_graph(data):
                             titles=publication['title'],
                             paper_id=publication['paper_id'])
             except:
-                pass
-
+                logging.error(
+                    f"Error creating publication node for {publication['title']}")
+                session.run(query,
+                            titles="no title",
+                            paper_id=publication['paper_id'])
             # Iterate over the coauthors of the publication
             if publication['coauthors'] is not None:
                 for coauthor in publication['coauthors']:

@@ -12,7 +12,7 @@
 
 ## Update
 
-[on 2023-10-17] Instruction on the use of Fastapi App\
+[On 2023-10-18] Instruction on the use of Fastapi App in `OpenAlex\fastapi` directory\
 Go to the folder `cd OpenAlex\fastapi`\
 Create a vitual environment and install the dependencies and activate the environment:
 
@@ -28,7 +28,11 @@ After correctly installed and activate the environment, run the fastapi server:
 uvicorn main:app --reload
 ```
 
-Now you can explore the api at `http://127.0.0.1:8000/docs`. Currently, the app supports search author by name and getting n levels of coauthors.
+Now you can explore the api at `http://127.0.0.1:8000/docs`. Currently, the app supports
+
+- Search author name and get a list of result authors
+- Search author by id and getting n levels of coauthors.
+- Search publication by doi and get the pdf downloaded to local
 
 ![](graphics/fastapi.png)
 

@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 import requests
 from construct_graph import construct_graph
+from download_doi import GetDownloadUrl, DownloadFileByUrl
 app = FastAPI()
 
 
@@ -53,3 +54,11 @@ def search_id(author_id: str, n: int = 2):
             for coauthor in relation["coauthors"]:
                 search_id(coauthor["id"], n-1)
     # return relations
+
+
+@app.get("/publication/{publication_id}")
+def search_id(publication_doi: str):
+    """search for publication ID, download its PDF using sci-hub"""
+    doi = publication_doi
+    paperDownloadUrl = GetDownloadUrl(doi)  # doi
+    DownloadFileByUrl(paperDownloadUrl)
