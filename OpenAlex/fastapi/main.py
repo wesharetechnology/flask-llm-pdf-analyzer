@@ -36,6 +36,7 @@ def search_id(author_id: str, n: int = 2):
         # find connections by institution
         # construct a graph that shows the connections between the author and their co-authors
         relations = []
+        doi_list = []
         results = requests.get(url).json()["results"]
         for result in results:
 
@@ -48,17 +49,29 @@ def search_id(author_id: str, n: int = 2):
             for authorship in result["authorships"]:
                 publication["coauthors"].append(authorship["author"])
             relations.append(publication)
-
-        construct_graph(relations)
+        # print(relations)
+        # construct_graph(relations)
         for relation in relations:
             for coauthor in relation["coauthors"]:
-                search_id(coauthor["id"], n-1)
-    # return relations
+                next_relations = search_id(coauthor["id"], n-1)
+                if next_relations:
+                    relations.extend(next_relations)
+                # print(search_id(coauthor["id"], n-1))
+
+    return relations
 
 
 @app.get("/publication/{publication_id}")
-def search_id(publication_doi: str):
+def search_doi(author_id: str, n: int = 2):
     """search for publication ID, download its PDF using sci-hub"""
-    doi = publication_doi
-    paperDownloadUrl = GetDownloadUrl(doi)  # doi
-    DownloadFileByUrl(paperDownloadUrl)
+    relations = search_id(author_id, n)
+    print(relations)
+    # doi_EnglishPaper = 'https://doi.org/10.1038/nature07970'
+    # paperDownloadUrl = GetDownloadUrl(doi_EnglishPaper)  # doi
+    # DownloadFileByUrl(paperDownloadUrl)
+    for relation in relations:
+        try:
+            paperDownloadUrl = GetDownloadUrl(relation["doi"])  # doi
+            DownloadFileByUrl(paperDownloadUrl)
+        except:
+            print("Download failed:" + relation["doi"])

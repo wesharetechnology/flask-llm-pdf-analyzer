@@ -174,3 +174,5 @@ vectordb
 # test file
 ./test.ipynb
 # log folder
+
+*.json

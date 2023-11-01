@@ -30,6 +30,7 @@ def GetDownloadUrl(DOI_EnglishPaper):
 
 
 def DownloadFileByUrl(DownloadUrl):
+    # root_download = "download/"
     if DownloadUrl != '' and DownloadUrl.find('http') >= 0:
         FileName = DownloadUrl.split('/')[-1]
         r1 = requests.get(DownloadUrl)
