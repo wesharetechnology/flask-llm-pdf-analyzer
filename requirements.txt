@@ -6,7 +6,7 @@ flask
 fastapi
 transformers
 PyPDF2
-openapi
+openai
 python-dotenv
 chromadb
 langchain

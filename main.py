@@ -1,9 +1,9 @@
 import os
-from pathlib import Path
 from dotenv import load_dotenv
+import openai
 
 # 向量数据库
-from langchain.vectorstores import Chroma
+from langchain.vectorstores.chroma import Chroma
 
 # 文档加载器
 from langchain.document_loaders import PyPDFLoader
@@ -19,10 +19,8 @@ from langchain.chains import RetrievalQA
 
 # Import Azure OpenAI
 # from langchain.llms import AzureOpenAI
-import openai
-from langchain.chat_models import AzureChatOpenAI
 
-print(Path.cwd())
+from langchain.chat_models import AzureChatOpenAI
 
 # 加载环境变量
 load_dotenv()
@@ -36,19 +34,19 @@ openai.api_key = OPENAI_API_KEY
 os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 
 # 本地PDF文件夹位置
-pdf_base_dir = "./data/uCap"
+PDF_DIR = "./data/uCap"
 # 本地数据库位置
-db_dir = "./db/chroma"
+DB_DIR = "./db/chroma"
 
 
-azure_embeddeing = OpenAIEmbeddings(
+azure_embedding = OpenAIEmbeddings(
     model="text-embedding-ada-002",
     openai_api_base="https://hkust.azure-api.net",
     openai_api_type="azure",
 )
 
 #  创建Azure OpenAI的实例
-llm_chat = AzureChatOpenAI(
+azure_chat = AzureChatOpenAI(
     openai_api_version=openai.api_version,
     deployment_name="gpt-35-turbo",
     openai_api_key=openai.api_key,
@@ -57,10 +55,14 @@ llm_chat = AzureChatOpenAI(
     temperature=0,
 )
 # 向量数据库
-vectordb = Chroma(embedding_function=azure_embeddeing, persist_directory=db_dir)
+vectordb = Chroma(embedding_function=azure_embedding, persist_directory=DB_DIR)
 
 # 构建检索方式
 retriever = vectordb.as_retriever()
+# 通过langchain构建一个问答链
+chain = RetrievalQA.from_chain_type(
+    llm=azure_chat, chain_type="stuff", retriever=retriever
+)
 
 
 def load_pdfs(file_folder_path) -> list:
@@ -84,23 +86,14 @@ def split_pdfs(file_list: list, chunk_size=1000, chunk_overlap=400) -> list:
     content_list = []
     for pdf in file_list:
         content_list.append(text_splitter.split_documents(pdf))
-        print("拆分文档数：", len(docs))
+        print("拆分文档数：", len(content_list))
     return content_list
 
 
-def get_enbeddings(
-    embeddings,
-    content_list,
-    persist_directory,
-):
+def get_enbeddings(content_list):
     """
     将文本结果进行词嵌入获取向量
     """
-    # 向量化
-    # 会对 OpenAI 进行 API 调用
-    vectordb = Chroma(
-        embedding_function=embeddings, persist_directory=persist_directory
-    )
     for content in content_list:
         vectordb.add_documents(content)
     # 持久化
@@ -112,42 +105,45 @@ def search_from_chroma(query):
     """
     从chroma数据库中寻找本地相近文本
     """
-    db = Chroma(embedding_function=azure_embeddeing, persist_directory=db_dir)
-    related_doc = db.similarity_search(query)
+    related_doc = vectordb.similarity_search(query)
     print(related_doc[0])
 
 
-def query_LLM(llm):
+def query_LLM():
     """
     使用语言模型进行回答
     """
-    # 通过langchain构建一个问答链
-    chain = RetrievalQA.from_chain_type(
-        llm=llm, chain_type="stuff", retriever=retriever
-    )
+
+    # related_doc = db.similarity_search(query)
+    # print(related_doc[0])
 
     # # 循环接收用户输入并进行问答
 
     while True:
         user_input = input("请输入问题进行问答：")
         result = chain({"query": user_input})
-        print(result["result"])
+        related_doc = vectordb.similarity_search(user_input)
+        print("->与问题最相关的四个知识库资料为:")
+        for i in range(4):
+            print("\ti ", related_doc[0].metadata["source"])
+        print("->与问题最相似的文本段为:", related_doc[0].page_content)
+        print("->语言模型回复为:", result["result"])
 
 
 if __name__ == "__main__":
-    ##### 构建本地chroma数据库
-    # local_files = load_pdfs(pdf_base_dir)
+    # 构建本地chroma数据库
+    # local_files = load_pdfs(PDF_DIR)
     # docs = split_pdfs(local_files)
     # # 统计总共的文本量
     # print("提取文本量：", len(docs))
     # get_enbeddings(
-    #     embeddings=azure_embeddeing, persist_directory=db_dir, content_list=docs
+    #     content_list=docs
     # )
 
-    ###### 测试本地数据集寻找与query相似的文本段
+    # 测试本地数据集寻找与query相似的文本段
     # while True:
     #     q = input()
     #     search_from_chroma(q)
 
-    ###### 使用语言模型结合chroma进行问答
-    query_LLM(llm_chat)
+    # 使用语言模型结合chroma进行问答
+    query_LLM()
